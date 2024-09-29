@@ -11,7 +11,7 @@ Given that I am a candidate for a UX-focused position, much of my work in this a
 - Reconnection protocols for our data sources
 - Capability of reading data transferred in batches in non-JSON format
 
-## Assumptions
+### Assumptions
 
 - We get to choose the format the data comes in. I choose data that comes in the following format: {time: datetime, system: string(fahrenheit, celsius, etc), temperature: float}
 - The user will be a scientist or software engineer
@@ -22,7 +22,11 @@ Given that I am a candidate for a UX-focused position, much of my work in this a
 - Thresholds are displayed, customizable, and the user can request a notification when the temp rises to a threshold, falls to a threshold, or both
 - Ideally, a chart showing data change over time
 
-### Usage Instructions
+## Usage Instructions
 
-### How To Run Tests
+Open a terminal window, navigate to this project's folder, and run `npm install` , then `npm run dev`. Navigate your browser to the URL that shows up when it's done building (mine is http://localhost:5173). 
+
+To exit the process, return to the terminal window running this code, and use `Ctrl+C` (`Command .` in OSX, I believe)
+
+## How To Run Tests
 
