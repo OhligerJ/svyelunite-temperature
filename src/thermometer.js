@@ -1,10 +1,11 @@
-// thermometer class
-
 export default class Thermometer {
     constructor(temperature_data, thresholds) {
         // set basic defaults
+        this.array_key = 0; // current position in the JSON array
         this.current_temperature = 0;
+        this.current_datetime;
         this.previous_temperature;
+        this.previous_datetime;
         this.units = "";
         this.temperature_language;
         this.temperature_data;
@@ -22,25 +23,34 @@ export default class Thermometer {
 
         this.setTemperatureData(temperature_data);
         this.setUnits(this.temperature_data.units);
-        this.setCurrentTemperature(this.temperature_data.data[0].temperature);
+        this.setCurrentTemperature(this.temperature_data.data[0].temperature, this.temperature_data.data[0].time);
         this.setTemperatureLanguage(this.units);
     }
 
     // setup methods
-    setCurrentTemperature(temperature) {
-        if(temperature) {
+    setCurrentTemperature(temperature, datetime) {
+        if(temperature && datetime) {
             this.current_temperature = parseFloat(temperature);
+            this.current_datetime = new Date(datetime);
         } else {
             throw new Error("Invalid temperature entry given to setCurrentTemperature: ", temperature);
         }
     }
 
     setUnits(units) {
-        this.units = units;
+        if(units && (units == "Celsius" || units == "Fahrenheit" || units == "Kelvin")){
+            this.units = units;
+        } else {
+            throw new Error("Unable to set units; please use a valid value such as Celsius, Fahrenheit, or Kelvin. Value given: ", units)
+        }
     }
 
     setTemperatureData(temperature_data){
-        this.temperature_data = JSON.parse(temperature_data);
+        if (temperature_data){
+            this.temperature_data = JSON.parse(temperature_data);
+        } else {
+            throw new Error("Invalid temperature data supplied, please review and resubmit");
+        }
     }
 
     setTemperatureLanguage(units){
@@ -55,14 +65,17 @@ export default class Thermometer {
         }
     }
 
-    setPreviousTemperature(temperature){
-        if(temperature){
+    setPreviousTemperature(temperature, datetime){
+        if(temperature && datetime){
             this.previous_temperature = parseFloat(temperature);
+            this.previous_datetime = new Date(datetime);
         } else {
             throw new Error("Invalid temperature entry given to setPreviousTemperature: ", temperature);
         }
         
     }
+
+    /* Here begin the methods for utilization and interaction */
 
     // determine if temperature has crossed or landed on threshold
     // returns the relevant threshold object, or null if one isn't found
@@ -94,7 +107,7 @@ export default class Thermometer {
         }
     }
 
-    // checks if a threshold has been crossed and if the threshold preferences have been met
+    // checks if a threshold has been crossed and if the threshold preferences have been met. Primarily a helper function for crossedThreshold()
     isThresholdValid(cur_temp, threshold, prev_temp){
         if (cur_temp <= prev_temp && 
             (threshold.preference == "falling_to" || threshold.preference == "both") && 
@@ -105,5 +118,17 @@ export default class Thermometer {
         }
 
         return false;
+    }
+
+    // this function would be potentially more complex with potentially-unsorted data, like a livestream of data. As it is, we can feed it sorted data or sort it ourselves with a custom sort function. For now, assume a sorted array
+    updateTemperatures() {
+        if(!this.temperature_data.data[this.array_key+1] ){
+            throw new Error('No more valid data! updateTemperatures() failed');
+        } else {
+            this.setPreviousTemperature(this.current_temperature, this.current_datetime);
+            this.setCurrentTemperature(this.temperature_data.data[this.array_key+1].temperature, this.temperature_data.data[this.array_key+1].time)
+
+            this.array_key++;
+        }
     }
 };

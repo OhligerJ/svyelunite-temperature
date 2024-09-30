@@ -43,3 +43,14 @@ You can find examples in the file `try_this_json.json` for input examples
 
 In the same terminal as mentioned above, run `npm run test`. If you wish to make changes to the test, you can do so in the file located at "src/thermometer.test.js". The tests will rerun automatically after updating and saving a file. These tests were created using Vitest, the guide of which can be found here: [https://vitest.dev/guide/](https://vitest.dev/guide/)
 
+Updating the JSON values and calling the appropriate class functions within the tests file is one method by which to interact with library
+
+## Another Interaction Method
+
+Include the thermometer.js file in a Javascript environment of your own. After instantiating, I recommend using a loop to call updateTemperatures()*, then using crossedThreshold() to determine whether to call thresholdMessage(). How you output the threshold message is up to you.
+
+*while there's still a valid next entry in the data
+
+## Third Interaction Method
+
+Ideally, yours truly has created a delightful front-end experience for you at the appropriate localhost location.

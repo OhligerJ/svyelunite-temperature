@@ -26,6 +26,10 @@ test('Returns current temperature of 14.5', () => {
     expect(therm.current_temperature).toBe(14.5)
 })
 
+test('Returns current datetime of April 23 2012, 6:25:43.511Z', () => {
+    expect(therm.current_datetime).toStrictEqual(new Date("2012-04-23T18:25:43.511Z"))
+})
+
 test('Returns previous temperature of undefined', () => {
     expect(therm.previous_temperature).toBe(undefined)
 })
@@ -38,8 +42,9 @@ test('Returns Celsius for our temperature units', () => {
 
 let therm2 = new Thermometer(therm_test_data_string, therm_thresholds)
 
-therm2.current_temperature = 12.0;
-therm2.previous_temperature = 14.5;
+therm2.updateTemperatures();
+// therm2.current_temperature = 12.0;
+// therm2.previous_temperature = 14.5;
 
 /************************************************************ */
 test('Returns Celsius for our therm2 temperature units', () => {
