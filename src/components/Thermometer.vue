@@ -1,18 +1,19 @@
 <script setup>
 import { ref } from 'vue'
-import Thermometer from '../Thermometer.js'
 
 defineProps({
-  temperature_data: String,
-  thresholds: String,
+  thermometer_obj: Object,
 })
 
+// export default {
+//     name:
+// }
 </script>
 
 <template>
 
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
+  <div class="thermometer">
+    Current temperature is: {{this.$props.thermometer_obj.current_temperature}}
   </div>
 
 </template>
