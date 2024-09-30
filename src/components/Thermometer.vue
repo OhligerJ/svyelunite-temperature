@@ -2,6 +2,8 @@
 import { reactive, onMounted } from 'vue'
 import Thermometer from '../thermometer.js'
 
+let timeout_multiplier = 500; // update temperature every 0.5 seconds
+
 let therm_data = {
     "units": "Celsius",
     "data": [
@@ -16,8 +18,8 @@ let therm_data = {
         {"time": "2012-04-23T18:25:51.511Z", "temperature": "102.0"},
         {"time": "2012-04-23T18:25:52.511Z", "temperature": "98.0"},
         {"time": "2012-04-23T18:25:53.511Z", "temperature": "-2.0"},
-        {"time": "2012-04-23T18:25:52.511Z", "temperature": "-98.0"},
-        {"time": "2012-04-23T18:25:52.511Z", "temperature": "1.0"},
+        {"time": "2012-04-23T18:25:54.511Z", "temperature": "-98.0"},
+        {"time": "2012-04-23T18:25:55.511Z", "temperature": "1.0"},
     ]
 };
 
@@ -26,7 +28,7 @@ let therm_data = {
 */
 let therm_thresholds = [
     {temperature: 13.0, preference: "both", notification_leeway: 0},
-    {temperature: 0.0, preference: "rising_to", notification_leeway: 0},
+    {temperature: 0.0, preference: "rising_to", notification_leeway: 0.5},
 ];
 
 let thermometer = reactive(new Thermometer(JSON.stringify(therm_data), therm_thresholds));
@@ -50,7 +52,7 @@ onMounted(() => {
                     time: thermometer.temperature_data.data[i].time,
                     message: msg
                 }
-            }, 500*i)
+            }, timeout_multiplier*i)
             
         }
     }

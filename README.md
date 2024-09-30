@@ -38,11 +38,13 @@ You can find examples in the file `try_this_json.json` for input examples. Then 
 
 After getting this project up and running with `npm run dev`, navigate to the appropriate localhost URL. You should see the temperatures go rolling by every 0.5 seconds, with notifications triggering at appropriate thresholds. 
 
+If you wish to slow down or speed up the time between temperature changes, change `timeout_multiplier` in [Thermometer.vue](./src/components/Thermometer.vue).
+
 ## How To Run Tests
 
 In the same terminal as mentioned above, run `npm run test`. If you wish to make changes to the test, you can do so in the file located at [thermometer.test.js](./thermometer.test.js). The tests will rerun automatically after updating and saving a file. These tests were created using Vitest, the guide of which can be found here: [https://vitest.dev/guide/](https://vitest.dev/guide/)
 
-## Another Interaction Method
+## An Alternative Interaction Method
 
 Include the thermometer.js file in a Javascript environment of your own. After instantiating, I recommend using a loop to call updateTemperatures()*, then using crossedThreshold() to determine whether to call thresholdMessage(). How you output the threshold message is up to you.
 
