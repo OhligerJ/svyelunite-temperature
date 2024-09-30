@@ -66,7 +66,9 @@ export default class Thermometer {
     }
 
     setPreviousTemperature(temperature, datetime){
-        if(temperature && datetime){
+        console.log('temperature: ', temperature)
+        console.log('datetime: ', datetime)
+        if((temperature || temperature === 0) && datetime){
             this.previous_temperature = parseFloat(temperature);
             this.previous_datetime = new Date(datetime);
         } else {
