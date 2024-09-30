@@ -24,7 +24,9 @@ Given that I am a candidate for a UX-focused position, much of my work in this a
 
 ## Get it up and running
 
-Open a terminal window, navigate to this project's folder, and run `npm install` , then `npm run dev`. Navigate your browser to the URL that shows up when it's done building (mine is http://localhost:5173). 
+Open a terminal window, navigate to this project's folder, and run `npm install` , then `npm run dev`. Some dependencies may require you to update your version of `npm`.
+
+Navigate your browser to the URL that shows up when it's done building (mine is http://localhost:5173). 
 
 To exit the process, return to the terminal window running this code, and use `Ctrl+C` (`Command .` in OSX, I believe)
 
@@ -34,3 +36,4 @@ You can find examples in the file `try_this_json.json` for input examples
 
 ## How To Run Tests
 
+In the same terminal as mentioned above, run `npm run test`. If you wish to make changes to the test, you can do in the file located at "src/thermometer.test.js". These tests were created using Vitest, the guide of which can be found here: [https://vitest.dev/guide/](https://vitest.dev/guide/)
