@@ -4,12 +4,7 @@
 
 I believe that an assignment like this is designed with two primary goals: to see how the candidate thinks, and to see how the candidate codes.
 
-Given that I am a candidate for a UX-focused position, much of my work in this assignment will involve creating a good user experience. Here are additional features I considered for the backend and chose not to implement:
-- More robust error and exception checking and messaging. Specifically, tracking a given source's frequency of bad data and adding messaging logic to various behaviors common to real-space use
-- Creating a meta-class to handle multiple instances of the thermometer class at once. Consider the example of a front-end tracking multiple temperature sensors and an architecture that relegates the science and logic to the back-end.
-- A basic database to allow for the storage and analytics of historic data (basic because this a take-home assignment)
-- Reconnection protocols for our data sources
-- Capability of reading data transferred in batches in non-JSON format
+Given that I am a candidate for a UX-focused position, much of my work in this assignment will involve creating a good user experience. I've included additional thoughts in the afterword. 
 
 ### Assumptions
 
@@ -17,11 +12,11 @@ Given that I am a candidate for a UX-focused position, much of my work in this a
 - Temperature data all comes in with the same units.
 - This is a library that a front-end might call as needed. So the front-end would decide the data source and then use this library to process incoming data. This would give it the flexibility to process (and potentially visualize) manually-input batches of data as well as listening to a stream of incoming data
 
-### Intentional Capabilities
+### Capabilities
 
 - User can input JSON-formatted data (in lieu of an open connection)
 - Thresholds are customizable, and the user can request a notification when the temp rises to a threshold, falls to a threshold, or both
-- Ideally, a chart showing data change over time
+- Visually, watch the temperature shift over time while a list of notifications and their timestamps appear at threshold points. 
 
 ### General Approach
 
@@ -37,13 +32,15 @@ To exit the process, return to the terminal window running this code, and use `C
 
 ## Try It Out
 
-You can find examples in the file `try_this_json.json` for input examples
+You can find examples in the file `try_this_json.json` for input examples. Then update the JSON and thresholds variables in [thermometer.test.js](./src/thermometer.test.js) for testing or [Thermometer.vue](./src/components/Thermometer.vue) for a visual output.
+
+## Primary Interaction Method
+
+After getting this project up and running with `npm run dev`, navigate to the appropriate localhost URL. You should see the temperatures go rolling by every 0.5 seconds, with notifications triggering at appropriate thresholds. 
 
 ## How To Run Tests
 
-In the same terminal as mentioned above, run `npm run test`. If you wish to make changes to the test, you can do so in the file located at "src/thermometer.test.js". The tests will rerun automatically after updating and saving a file. These tests were created using Vitest, the guide of which can be found here: [https://vitest.dev/guide/](https://vitest.dev/guide/)
-
-Updating the JSON values and calling the appropriate class functions within the tests file is one method by which to interact with library
+In the same terminal as mentioned above, run `npm run test`. If you wish to make changes to the test, you can do so in the file located at [thermometer.test.js](./thermometer.test.js). The tests will rerun automatically after updating and saving a file. These tests were created using Vitest, the guide of which can be found here: [https://vitest.dev/guide/](https://vitest.dev/guide/)
 
 ## Another Interaction Method
 
@@ -51,6 +48,13 @@ Include the thermometer.js file in a Javascript environment of your own. After i
 
 *while there's still a valid next entry in the data
 
-## Third Interaction Method
+### Afterword
 
-Ideally, yours truly has created a delightful front-end experience for you at the appropriate localhost location.
+My general coding style is, to borrow from Einstein: as simple as possible, and no simpler. Since front-end code runs on a variety of browsers on a large variety of machines, one-off bugs are prevalent. Simple code decreases their prevalence and eases their debugging
+
+Here are additional features I considered for the backend and chose not to implement:
+- More robust error and exception checking and messaging. Including: tracking a given source's frequency of bad data and adding messaging logic to various behaviors common to real-space use
+- Creating a meta-class to handle multiple instances of the thermometer class at once. Consider the example of a front-end tracking multiple temperature sensors and an architecture that relegates the science and logic to the back-end.
+- A basic database to allow for the storage and analytics of historic data (basic because this a take-home assignment)
+- Reconnection protocols for our data sources
+- Capability of reading data transferred in batches in non-JSON format

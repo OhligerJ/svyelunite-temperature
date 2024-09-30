@@ -9,6 +9,11 @@ let therm_test_data = {
     ]
 }
 let therm_test_data_string = JSON.stringify(therm_test_data);
+
+/*
+    Options for preference: both, rising_to, falling_to
+*/
+
 let therm_thresholds = [
     {temperature: 13.0, preference: "both", notification_leeway: 0}
 ]
