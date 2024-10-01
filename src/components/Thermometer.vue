@@ -35,6 +35,7 @@ let thermometer = reactive(new Thermometer(JSON.stringify(therm_data), therm_thr
 
 let temp_list = reactive([])
 
+// mimic an incoming series of data
 onMounted(() => {
     for(let i = 0; i < thermometer.temperature_data.data.length; i++) {
         if(i == 0){
@@ -45,6 +46,7 @@ onMounted(() => {
 
                 let msg = ''
                 if(thermometer.crossedThreshold() != null){
+                    // here's where we'd log thing and send notifications
                     msg = thermometer.thresholdMessage(thermometer.crossedThreshold())
                 }
                 temp_list[i] = {
@@ -97,7 +99,7 @@ onMounted(() => {
                     margin: 5px;
                 }
                 p.current_datetime {
-                    font-size: 28px;
+                    font-size: 16px;
                 }
             }
             div.measurement{

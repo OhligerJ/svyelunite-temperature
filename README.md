@@ -14,7 +14,7 @@ Given that I am a candidate for a UX-focused position, much of my work in this a
 
 ### Capabilities
 
-- User can input JSON-formatted data (in lieu of an open connection)
+- User can update JSON-formatted data (in lieu of an open connection)
 - Thresholds are customizable, and the user can request a notification when the temp rises to a threshold, falls to a threshold, or both
 - Visually, watch the temperature shift over time while a list of notifications and their timestamps appear at threshold points. 
 
@@ -24,7 +24,7 @@ Given that I am a candidate for a UX-focused position, much of my work in this a
 
 ## Get it up and running
 
-Open a terminal window, navigate to this project's folder, and run `npm install` , then `npm run dev`. Some dependencies may require you to update your version of `npm`.
+Open a terminal window, navigate to this project's folder, and run `npm install`, then `npm run dev`. Some dependencies may require you to update your version of `npm`.
 
 Navigate your browser to the URL that shows up when it's done building (mine is http://localhost:5173). 
 
